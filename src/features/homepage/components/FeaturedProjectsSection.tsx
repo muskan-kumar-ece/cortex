@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import Link from "next/link";
 
 import { ArrowRight, ArrowUpRight, TrendingUp, Users, Zap } from "lucide-react";
@@ -15,10 +15,6 @@ const PROJECT_METRICS = [
 
 export function FeaturedProjectsSection({ projects }: { projects: any[] }) {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
 
   if (!projects.length) return null;
 

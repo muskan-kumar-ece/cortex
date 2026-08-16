@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { WhyB10Item } from "@/cms/homepage/types";
 import { Cpu, Eye, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -12,10 +12,12 @@ const IconMap: Record<string, React.ElementType> = {
 
 export function WhyB10Section({ items }: { items: WhyB10Item[] }) {
   const containerRef = useRef<HTMLElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
   
   // Parallax effect for floating elements
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: isMounted ? containerRef : undefined,
     offset: ["start end", "end start"]
   });
 

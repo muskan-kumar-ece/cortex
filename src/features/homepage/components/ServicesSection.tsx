@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ServiceItem } from "@/cms/services/types";
 import { AiNetworkVisual } from "@/components/visuals/AiNetworkVisual";
@@ -20,10 +20,6 @@ const VisualMap: Record<string, React.ReactNode> = {
 
 export function ServicesSection({ services }: { services: ServiceItem[] }) {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
 
   return (
     <section ref={containerRef} className="relative w-full bg-background">

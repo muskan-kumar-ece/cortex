@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ProcessStep } from "@/cms/homepage/types";
 import { Search, LayoutTemplate, Code2, TestTube2, Rocket, LifeBuoy } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,9 +17,11 @@ const IconMap: Record<string, React.ElementType> = {
 
 export function ProcessSection({ steps }: { steps: ProcessStep[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
   
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: isMounted ? containerRef : undefined,
     offset: ["start center", "end center"]
   });
 

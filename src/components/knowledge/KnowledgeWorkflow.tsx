@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { GitMerge } from "lucide-react";
 import { GlassCard } from "@/components/marketing/GlassCard";
@@ -17,8 +17,11 @@ interface KnowledgeWorkflowProps {
 
 export function KnowledgeWorkflow({ workflow }: KnowledgeWorkflowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: isMounted ? containerRef : undefined,
     offset: ["start center", "end center"],
   });
 
